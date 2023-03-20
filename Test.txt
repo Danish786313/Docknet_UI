@@ -1,0 +1,45 @@
+                    |   /*# sourceMappingURL=style.css.map */
+                    |   
+                    |   //# sourceMappingURL=bootstrap.bundle.min.js.map
+Remove this lines   |   
+                    |   sourceMappingURL=perfect-scrollbar.min.js.map
+                    |   
+                    |   /*# sourceMappingURL=materialdesignicons.min.css.map */
+
+
+var jqxhr = $.ajax({
+    type: 'POST',       
+    url: "processMe.php",
+    data: queryParams,
+    dataType: 'html',
+    context: document.body,
+    global: false,
+    async:false,
+    success: function(data) {
+        return data;
+    }
+}).responseText;
+
+alert(jqxhr);
+// or...
+return jqxhr;
+
+     var settings = {
+        "url": "http://142.93.219.133:4001/api/adminDashboard?startDate=2023-03-15&endDate=2023-03-15",
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+          "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJtb2hkZGFuaXNoa2hhbjY4MUBnbWFpbC5jb20iLCJpYXQiOjE2NzkwNTMyNDUsImV4cCI6MTY3OTA1MzYwNX0.UH7v7kvNKV8wjbJoiZaUS2S6cTVCJoXBpCGy4laKdcU"
+        },
+      };
+      
+      $.ajax(settings).done(function (response) {
+        if (response.status == true)  {
+          $('.onboardingcount').html(response.data.onboarding_count.onbaorded) == 3? $('.onboardingcount').html(response.data.onboarding_count.onbaorded): null;
+          $('.pendingcount').html(response.data.onboarding_count.pending);
+        }
+      }).catch(function (error) {
+        console.log(error)
+      });
+
+      
