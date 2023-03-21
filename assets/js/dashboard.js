@@ -196,16 +196,20 @@
               }
             })
     }
-    var fromDate = $('.fromDate');
-    var toDate = $('.toDate');
-    $('.btn').on('click', function() {      
-      fromDate = $('.fromDate');
-      toDate = $('.toDate');
-      
-      });
-      console.log("date", fromDate.val() ? fromDate.val(): new Date())
+   
+    var todayDate = new Date().toISOString().slice(0, 10);
+    var startDate  = $('.fromDate').val();
+    var endDate = $('.toDate').val();
+
+    $('.submitButton').on("click", function(event) {
+      $('.rows>tr').remove()
+      dashboard($(this).prevAll('.fromDate').val(), $(this).prevAll('.toDate').val())
+    });
+
+  function dashboard(fromDate, toDate) {
+
     var settings = {
-      "url": `http://142.93.219.133:4001/api/adminDashboard?startDate=${fromDate.val()? fromDate.val(): new Date() }&endDate=${toDate.val()}`,
+      "url": `http://142.93.219.133:4001/api/adminDashboard?startDate=${fromDate}&endDate=${toDate}`,
       "method": "GET",
       "timeout": 0,
       "headers": {
@@ -215,9 +219,9 @@
 
     $.ajax(settings).done(function (response) {
 
-      $('.patientscount').html(response.data.patient_count.count);
-      $('.onboardingcount').html(response.data.onboarding_count.onbaorded);
-      $('.pendingcount').html(response.data.onboarding_count.pending);
+      $('.patientscount').html(response.data.patient_count.count? response.data.patient_count.count: null);
+      $('.onboardingcount').html(response.data.onboarding_count.onbaorded? response.data.onboarding_count.onbaorded: null);
+      $('.pendingcount').html(response.data.onboarding_count.pending? response.data.onboarding_count.pending: null);
 
       if ($("#visit-sale-chart").length) {
         Chart.defaults.global.legend.labels.usePointStyle = true;
@@ -439,7 +443,7 @@
 
       var num = $('.rows')
       for (let i=0; i<= response.data.highNumberOfApointment_count.length - 1; i++) {
-        num.append(`<tr>
+        num.append(`<tr class="mytr">
           <td>
           <img src="http://nodejs.hackerkernel.com:4001/upload/${response.data.highNumberOfApointment_count[i].photo}" class="me-2" alt="image"> ${response.data.highNumberOfApointment_count[i].fullName}
           </td>
@@ -448,7 +452,7 @@
           ${response.data.highNumberOfApointment_count[i].COUNT}
             <!-- <label class="badge badge-gradient-success">DONE</label> -->
           </td>
-          <td> Dec 5, 2017 </td>
+          <td> ${response.data.highNumberOfApointment_count[i].degree} </td>
           <td>${response.data.highNumberOfApointment_count[i].consultCharge} </td>
           </tr>
       `)
@@ -460,6 +464,8 @@
         });
       }
     });
+  }
+  dashboard(startDate? startDate: todayDate, endDate? endDate: todayDate)
     // if ($("#visit-sale-chart-dark").length) {
     //   Chart.defaults.global.legend.labels.usePointStyle = true;
     //   var ctx = document.getElementById('visit-sale-chart-dark').getContext("2d");

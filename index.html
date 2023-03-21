@@ -3,7 +3,7 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta http-equiv="refresh" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Purple Admin</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="assets/vendors/mdi/css/materialdesignicons.min.css">
@@ -326,14 +326,14 @@
               <nav aria-label="breadcrumb">
                 <ul class="breadcrumb">
                   <li class="breadcrumb-item active" aria-current="page">
-                    <form class="form-sample">
+                    <!-- <form class="form-sample"> -->
                       <label for="exampleInputUsername2" class="col-form-label" >From :</label>
                       <input type="date" class="fromDate">
                       <label for="exampleInputUsername2" class="col-form-label toDate" >To :</label>
                       <input type="date" class="toDate">
                       <input type="submit" class="btn btn-block btn-gradient-primary submitButton">
                       <!-- <button class="btn btn-block btn-lg btn-gradient-primary mt-4"> Apply</button> -->
-                    </form>
+                    <!-- </form> -->
                     <!-- <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
                   </li>
                 </ul>
@@ -346,7 +346,7 @@
                     <img src="assets/images/dashboard/circle.svg" class="card-img-absolute" alt="circle-image" />
                     <h4 class="font-weight-normal mb-3">Patients <i class="mdi mdi-account mdi-24px float-right"></i>
                     </h4>
-                    <h2 class="mb-5 patientscount">0</h2>
+                    <h2 class="mb-5 patientscount"></h2>
                     <!-- <h6 class="card-text">Increased by 60%</h6> -->
                   </div>
                 </div>
@@ -409,11 +409,11 @@
                             <th> Docters </th>
                             <th> Speciality </th>
                             <th> Apointments </th>
-                            <th> Last Update </th>
+                            <th> Degree </th>
                             <th> Consultation Charge </th>
                           </tr>
                         </thead>
-                        <tbody class="rows">
+                        <tbody class="rows" disabled="disabled">
                         </tbody>
                       </table>
                     </div>
@@ -633,21 +633,5 @@
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/todolist.js"></script>
     <!-- End custom js for this page -->
-
-
-    <script>
-      // APIs
-      
-       
-      // var startDate = $('.fromDate').val() 
-      // var endDate = $('.toDate').val() 
-
-      // console.log(startDate, endDate)
-      // $('.submitButton').on('click', function(event) {
-      //   console.log(startDate.val())
-      //   console.log(endDate.val())
-      // })
-      
-    </script>
   </body>
 </html>

@@ -42,4 +42,10 @@ return jqxhr;
         console.log(error)
       });
 
+reload -b
+
+$('.btn').on('click', function() {      
+      toDate = fromDate.val()
+      console.log(toDate.val())
+      });
       
