@@ -49,3 +49,6 @@ $('.btn').on('click', function() {
       console.log(toDate.val())
       });
       
+
+
+https://codingstatus.com/how-to-update-data-using-ajax-in-php/
