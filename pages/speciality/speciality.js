@@ -3,51 +3,63 @@
     'use strict';
     $(function() {
         var settings = {
-            "url": "http://142.93.219.133:4001/api/speciality",
-            "method": "GET",
-            "timeout": 0,
-          };
+          "url": "http://142.93.219.133:4001/api/speciality",
+          "method": "GET",
+          "timeout": 0,
+        };
           
-          var num = $('.rows')
+        var num = $('.rows')
+        $.ajax(settings).done(function (response) {
+          console.log(response);
+          for (var i = 0; i <response.data.length; i++) {
+            num.append(`
+                <tr>
+                  <td hidden>${response.data[i].id}</td>
+                  <td><img src=${response.data[i].logo} alt="image" /> ${response.data[i].speciality} </td>
+                  <td> ${response.data[i].commission} </td>
+                  <td><button id='aprove_user' type='submit' class='badge badge-danger'>remove</button> </td>
+                </tr>
+            `)
+          }
+        });
+
+        $(".submitbutton").on("click", function(event) {
+          event.preventDefault();
+          var formData = new FormData();
+          formData.append('speciality', $('.speciality').val());
+          formData.append('commission', $('.commissions').val());
+          formData.append('logo', $('input[type=file]')[0].files[0])
+
+          var settings = {
+              "url": "http:///142.93.219.133:4001/api/speciality",
+              "method": "POST",
+              "timeout": 0,
+              contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+              processData: false,
+              "data": formData
+          };
+            
           $.ajax(settings).done(function (response) {
+            location.reload(true);
             console.log(response);
-            for (var i = 0; i <response.data.length; i++) {
-                num.append(`
-                    <tr>
-                      <td> ${response.data[i].speciality} </td>
-                      <td> ${response.data[i].commission} </td>
-                      <td> Herman Beck </td>
-                    </tr>
-                `)
-            }
-            
-            
+          }).catch(function (error) {
+            alert(JSON.parse(error.responseText).message);
           });
-
-
-        $(".submitButton").on("click", function() {
-            var speciliaty = $('.speciality').val()
-            var commision = $('.commissions').val()
-            var settings = {
-                "url": "http://142.93.219.133:4001/api/speciality",
-                "method": "POST",
-                "timeout": 0,
-                "headers": {
-                  "Content-Type": "application/json"
-                },
-                "data": JSON.stringify({
-                  "speciality": speciliaty,
-                  "commission": commision
-                }),
-              };
-              
-              $.ajax(settings).done(function (response) {
-                location.reload(true)
-                console.log(response);
-              }).catch(function (error) {
-                alert(JSON.parse(error.responseText).message);
-              });
         })
         
+        $(document).on("click", "#aprove_user", function(){
+          var id = $(this).parents("tr").find("td:eq(0)").html();
+          var settings = {
+            "url": `http:///142.93.219.133:4001/api/speciality/${id}`,
+            "method": "DELETE",
+            "timeout": 0,
+          };
+          $.ajax(settings).done(function (response) {
+            location.reload(true)
+            console.log(response);
+          }).catch(error => {
+            alert(JSON.parse(error.responseText).message);
+          });
+        })
     });
   })(jQuery);

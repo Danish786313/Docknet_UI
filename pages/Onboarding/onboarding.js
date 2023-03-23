@@ -25,10 +25,7 @@
               alert(JSON.parse(err.responseText).message);
             });
             $(document).on("click","#aprove_user",function(){
-              $(this).button('loading');
-              setTimeout(function() {
-                $this.button('reset');
-            }, 5000);
+            //  
 
               var email = $(this).parents("tr").find("td:eq(3)").html();
               var settings = {
