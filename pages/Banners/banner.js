@@ -24,7 +24,7 @@
         event.preventDefault();
         var form = new FormData();
         form.append("banner_image", $('input[type=file]')[0].files[0]);
-        form.append("link", "http://localhost:4000/api/banner");
+        form.append("link", option.val());
         
         var settings = {
           "url": "http://142.93.219.133:4001/api/banner",
@@ -37,6 +37,7 @@
         };
         
         $.ajax(settings).done(function (response) {
+          location.reload(true);
           console.log(response);
         }).catch(err => {
           alert(JSON.parse(err.responseText).message);
