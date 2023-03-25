@@ -274,10 +274,10 @@
                   fill: false,
                   borderWidth: 1,
                   fill: 'origin',
-                  data: [response.data.apointments.Reshedule]
+                  data: [response.data.apointments.Upcoming]
                 },
                 {
-                  label: "Reshedule",
+                  label: "Completed",
                   borderColor: gradientStrokeBlue,
                   backgroundColor: gradientStrokeBlue,
                   hoverBackgroundColor: gradientStrokeBlue,
@@ -286,7 +286,7 @@
                   fill: false,
                   borderWidth: 1,
                   fill: 'origin',
-                  data: [response.data.apointments.Upcoming]
+                  data: [response.data.apointments.Completed]
                 },
                 {
                   label: "Cancelled",

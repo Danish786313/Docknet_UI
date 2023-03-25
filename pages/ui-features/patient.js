@@ -23,7 +23,7 @@
                         ${response.data.items[i].email}
                         </td>
                         <td>  ${response.data.items[i].phone} </td>
-                        <td> <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw">See full profile</button> </td>
+                        <td> <button type="button" id="viewbutton" class="btn btn-gradient-primary btn-rounded btn-fw"  value=${response.data.items[i].id}>See full profile</button> </td>
                     </tr>
                 `)
                 }
@@ -53,13 +53,20 @@
                           ${response.data.items[i].email}
                           </td>
                           <td>  ${response.data.items[i].phone} </td>
-                          <td> <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw">See full profile</button> </td>
+                          <td> <button type="button" id="viewbutton" class="btn btn-gradient-primary btn-rounded btn-fw"  value=${response.data.items[i].id}>See full profile</button> </td>
                       </tr>
                   `)
                   }
             }).catch(err => {
               alert(JSON.parse(err.responseText).message);
             });;
+          })
+
+          $(document).on("click", "#viewbutton", function(){
+            var date = new Date();
+            date.setTime(date.getTime() + 24 * 60 * 60 * 1000); 
+            $.cookie('id', $(this).val(), { path: '/' });
+            $(location).prop('href', `./patientdetails/patientdetails.html`)
           })
     });
   })(jQuery);

@@ -2,8 +2,13 @@
 (function($) {
     'use strict';
     $(function() {
+      var search = $(".searchSpeciality")
+      search.on('input', function(event) {
+        event.preventDefault();
+        $('.rows>tr').remove()
+        var searchText = $(this).val();
         var settings = {
-          "url": "http://142.93.219.133:4001/api/speciality",
+          "url": `http://142.93.219.133:4001/api/speciality?searchText=${searchText}`,
           "method": "GET",
           "timeout": 0,
         };
@@ -15,13 +20,39 @@
             num.append(`
                 <tr>
                   <td hidden>${response.data[i].id}</td>
-                  <td><img src=${response.data[i].logo} alt="image" /> ${response.data[i].speciality} </td>
+                  <td><img src=${response.data[i].logo} alt="image" /> </td>
+                  <td> ${response.data[i].speciality} </td>
                   <td> ${response.data[i].commission} </td>
                   <td><button id='aprove_user' type='submit' class='badge badge-danger'>remove</button> </td>
                 </tr>
             `)
           }
         });
+      })
+
+      var settings = {
+        "url": `http://142.93.219.133:4001/api/speciality`,
+        "method": "GET",
+        "timeout": 0,
+      };
+        
+      var num = $('.rows')
+      $.ajax(settings).done(function (response) {
+        console.log(response);
+        for (var i = 0; i <response.data.length; i++) {
+          num.append(`
+              <tr>
+                <td hidden>${response.data[i].id}</td>
+                <td><img src=${response.data[i].logo} alt="image" /> </td>
+                <td> ${response.data[i].speciality} </td>
+                <td> ${response.data[i].commission} </td>
+                <td><button id='aprove_user' type='submit' class='badge badge-danger'>remove</button> </td>
+              </tr>
+          `)
+        }
+      });
+
+        
 
         $(".submitbutton").on("click", function(event) {
           event.preventDefault();
