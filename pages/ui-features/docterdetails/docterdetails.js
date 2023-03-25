@@ -33,6 +33,14 @@
             $('.consultCharges').html(response.data.consultCharge);
             $('.clinicName').html(response.data.clinicName);
             $('.clinicAddress').html(response.data.clinicAddress);
+
+            var docs = $('.documents')
+            docs.append(`
+              <img src="${response.data.docterInfo.licenseFront}" alt="image" style="height: 110px; width: 110px;"/>
+              <img src="${response.data.docterInfo.identityCardFront}" alt="image" style="height: 110px; width: 110px;"/>
+              <img src="${response.data.docterInfo.identityCardBack}" alt="image" style="height: 110px; width: 110px;"/>
+              <img src="${response.data.docterInfo.clinicLicenseFront}" alt="image" style="height: 110px; width: 110px;"/>
+            `)
             
           }).catch(err => {
             alert(JSON.parse(err.responseText).message);
