@@ -47,7 +47,6 @@
       $.ajax(settings).done(function (response) {
       var num = $('.rows')
       for (let i=0; i<= response.data.items.length - 1; i++) {
-        console.log(response.data.items[i].photo)
         num.append(`
             <tr>
                 <td class="py-1">

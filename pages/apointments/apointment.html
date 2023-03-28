@@ -25,7 +25,7 @@
       <nav class="navbar default-layout-navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
           <a class="navbar-brand brand-logo" href="../../index.html"><img src="../../assets/images/docknetlogo.png" style="height: 120px;" alt="logo" /></a>
-          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/docknet-minilogo.png" alt="logo" /></a>
+          <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../assets/images/docknet-minilogo.png" style="width: 35px;" alt="logo" /></a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-stretch">
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -297,6 +297,49 @@
                   <i class="mdi mdi-home"></i>
                 </span> Consultation
               </h3>
+              <nav aria-label="breadcrumb">
+                <ul class="breadcrumb">
+                  <li class="breadcrumb-item active" aria-current="page">
+                    <!-- <form class="form-sample"> -->
+                      <table class="table-sm">
+                        <tr>
+                          <td>
+                            <input type="text" class="form-control form-control-lg border-1 searchapointments" placeholder="Search Docters">
+                          </td>
+                        </tr>
+                      </table>
+                      <!-- <button class="btn btn-block btn-lg btn-gradient-primary mt-4"> Apply</button> -->
+                    <!-- </form> -->
+                    <!-- <span></span>Overview <i class="mdi mdi-alert-circle-outline icon-sm text-primary align-middle"></i> -->
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <!-- <h4 class="card-title">Bordered table</h4> -->
+                  <!-- <p class="card-description"> Add class <code>.table-bordered</code> -->
+                  </p>
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th> S. no. </th>
+                        <th> Patient </th>
+                        <th> Docter </th>
+                        <th> Payment </th>
+                        <th> Date </th>
+                        <th> Time </th>
+                        <th> Status </th>
+                        <th>Problem desciption</th>
+                      </tr>
+                    </thead>
+                    <tbody class="rows">
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
           <!-- content-wrapper ends -->
@@ -313,6 +356,28 @@
       </div>
       <!-- page-body-wrapper ends -->
     </div>
+
+    <!-- modal start -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Reason for Consultation.</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <span class="reason">
+              
+            </span>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- modal end -->
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
@@ -324,6 +389,7 @@
     <script src="../../assets/js/off-canvas.js"></script>
     <script src="../../assets/js/hoverable-collapse.js"></script>
     <script src="../../assets/js/misc.js"></script>
+    <script src="./apointment.js"></script>
     <!-- endinject -->
   </body>
 </html>

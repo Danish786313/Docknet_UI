@@ -15,10 +15,7 @@
           `)
         }
       });
-      // $("#inputID").on("click", function() {
-      //   var selectedCountry = $(this).children("option:selected").val();  
-      //   console.log(selectedCountry)
-      // })
+      
       $(".submitbutton").on("click", function(event) {
         var id = $("#inputID").children("option:selected").val();
         event.preventDefault();
@@ -44,6 +41,40 @@
         });
       })
       
+      var settings = {
+        "url": "http://142.93.219.133:4001/api/banner?_page=0&_limit=10",
+        "method": "GET",
+        "timeout": 0,
+      };
       
+      var rows = $('.rows')
+      $.ajax(settings).done(function (response) {
+        for (let i=0; i<= response.data.items.length -1 ; i++) {
+              rows.append(`
+              <tr>
+                <td> ${i+1} </td>
+                <td><img src="${response.data.items[i].image}" alt="image" style="height: 110px; width: 110px;"/> </td>
+                <td> <button value="${response.data.items[i].id}" type="button" class="btn btn-danger bannerremove">Remove</button> </td>
+              </tr>
+          `)
+        }
+
+        $(document).on("click", ".bannerremove", function() {
+          console.log($(this).val())
+          var settings = {
+            "url": `http://142.93.219.133:4001/api/banner/${$(this).val()}`,
+            "method": "DELETE",
+            "timeout": 0,
+          };
+          
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+            location.reload(true);
+          }).catch(err => {
+            alert(JSON.parse(err.responseText).message);
+          });
+        })
+
+      });
     });
   })(jQuery);
