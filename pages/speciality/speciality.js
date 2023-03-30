@@ -55,11 +55,12 @@
         
 
         $(".submitbutton").on("click", function(event) {
+          console.log("Danish")
           event.preventDefault();
           var formData = new FormData();
           formData.append('speciality', $('.speciality').val());
           formData.append('commission', $('.commissions').val());
-          formData.append('logo', $('input[type=file]')[0].files[0])
+          formData.append('SpecialityLogo', $('input[type=file]')[0].files[0])
 
           var settings = {
               "url": "http:///142.93.219.133:4001/api/speciality",
