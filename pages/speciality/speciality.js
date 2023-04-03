@@ -9,7 +9,7 @@
         $('.rows>tr').remove()
         var searchText = $(this).val();
         var settings = {
-          "url": `http://localhost:4000/api/speciality?searchText=${searchText}`,
+          "url": `http://142.93.219.133:4001/api/speciality?searchText=${searchText}`,
           "method": "GET",
           "timeout": 0,
         };
@@ -32,7 +32,7 @@
       })
 
       var settings = {
-        "url": `http://localhost:4000/api/speciality?_page=0&_limit=10`,
+        "url": `http://142.93.219.133:4001/api/speciality?_page=0&_limit=10`,
         "method": "GET",
         "timeout": 0,
       };
@@ -59,7 +59,7 @@
           $('.rows>tr').remove()
           currentPage = $(this).val()
           var settings = {
-            "url": `http://localhost:4000/api/speciality?_page=${currentPage}&_limit=10`,
+            "url": `http://142.93.219.133:4001/api/speciality?_page=${currentPage}&_limit=10`,
             "method": "GET",
             "timeout": 0,
           };
@@ -91,7 +91,7 @@
           formData.append('SpecialityLogo', $('input[type=file]')[0].files[0])
 
           var settings = {
-              "url": "http://localhost:4000/api/speciality",
+              "url": "http://142.93.219.133:4001/api/speciality",
               "method": "POST",
               "timeout": 0,
               contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
@@ -110,7 +110,7 @@
         $(document).on("click", "#aprove_user", function(){
           var id = $(this).parents("tr").find("td:eq(0)").html();
           var settings = {
-            "url": `http:///localhost:4000/api/speciality/${id}`,
+            "url": `http:///142.93.219.133:4001/api/speciality/${id}`,
             "method": "DELETE",
             "timeout": 0,
           };
