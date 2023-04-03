@@ -57,3 +57,7 @@ https://codingstatus.com/how-to-update-data-using-ajax-in-php/
 loader
 pagination
 validations
+wallet
+prescription
+
+done

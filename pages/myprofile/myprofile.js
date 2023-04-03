@@ -12,6 +12,7 @@
         $('.inputName').val(response.data.name);
         $('.inputEmail').val(response.data.email);
         $('.inputTextArea').val(response.data.termAndCondition);
+        $('.inputTextabout').val(response.data.about);
         $('.inputPhone').val(response.data.supportPhone);
         $('.inputSupportemail').val(response.data.supportEmail);
       });
@@ -29,6 +30,7 @@
             "name" : $('.inputName').val(),
             "email": $('.inputEmail').val(),
             "termAndCondition": $('.inputTextArea').val(),
+            "about": $('.inputTextabout').val(),
             "supportPhone": $('.inputPhone').val(),
             "supportEmail": $('.inputSupportemail').val()
           }),
