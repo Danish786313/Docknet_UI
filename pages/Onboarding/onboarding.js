@@ -9,6 +9,7 @@
           "timeout": 0,
         };  
         $.ajax(settings).done(function (response) {
+          console.log(response)
           let pagination = $('.paginationdata')
           for (let i=currentPage; i <= response.data.totalPages -1 ; i++) {
             pagination.append(`<li class="page-item"><button value="${i}" type="button" class="page-link paginationbutton">${i + 1}</button></li>`)
@@ -22,10 +23,12 @@
                     <td>${response.data.items[i].speciality}</td>
                     <td>${response.data.items[i].degree}</td>
                     <td>${response.data.items[i].email}</td>
+                    <td><button value="${response.data.items[i].id}" class="badge badge-info modalButton" data-bs-target="#exampleModal" data-bs-toggle="modal">See Documents</button></td>
                     <td>${response.data.items[i].is_aprove == true ? '<label class="badge badge-success ">APROVED</label>': "<button id='aprove_user' type='submit' class='badge badge-danger'>Pending</button>"}
                 </tr>
             `)
           }
+            
   
           $('.paginationbutton').on("click", function() {
             currentPage = $(this).val() 
@@ -47,6 +50,7 @@
                         <td>${response.data.items[i].speciality}</td>
                         <td>${response.data.items[i].degree}</td>
                         <td>${response.data.items[i].email}</td>
+                        <td><button value="${response.data.items[i].id}" class="badge badge-info modalButton" data-bs-target="#exampleModal" data-bs-toggle="modal">See Documents</button></td>
                         <td>${response.data.items[i].is_aprove == true ? '<label class="badge badge-success ">APROVED</label>': "<button id='aprove_user' type='submit' class='badge badge-danger'>Pending</button>"}
                     </tr>
                 `)
@@ -96,6 +100,7 @@
                       <td>${response.data.items[i].speciality}</td>
                       <td>${response.data.items[i].degree}</td>
                       <td>${response.data.items[i].email}</td>
+                      <td><button value="${response.data.items[i].id}" class="badge badge-info modalButton" data-bs-target="#exampleModal" data-bs-toggle="modal">See Documents</button></td>
                       <td>${response.data.items[i].is_aprove == true ? '<label class="badge badge-success ">APROVED</label>': "<button id='aprove_user' type='submit' class='badge badge-danger'>Pending</button>"}
                   </tr>
               `)
@@ -105,6 +110,29 @@
           });
       })
 
+      $(document).on("click", ".modalButton", function (e) {
+        e.preventDefault();
+        $('.documents>img').remove()
+        var docs = $('.documents')
+        console.log($(this).val())
+
+        var settings = {
+          "url": `http://142.93.219.133:4001/api/docter/${$(this).val()}`,
+          "method": "GET",
+          "timeout": 0,
+        };
+        
+        $.ajax(settings).done(function (response) {
+          docs.append(`
+            <img src="${response.data.docterInfo.licenseFront}" alt="image" style="height: 110px; width: 110px;"/>
+            <img src="${response.data.docterInfo.identityCardFront}" alt="image" style="height: 110px; width: 110px;"/>
+            <img src="${response.data.docterInfo.identityCardBack}" alt="image" style="height: 110px; width: 110px;"/>
+            <img src="${response.data.docterInfo.clinicLicenseFront}" alt="image" style="height: 110px; width: 110px;"/>
+          `)
+        }).catch(function (error) {
+          alert(JSON.parse(error.responseText).message);
+        });
+      })
 
     });
   })(jQuery);

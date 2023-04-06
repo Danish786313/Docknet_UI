@@ -23,26 +23,35 @@
         var id = $("#inputID").children("option:selected").val();
         event.preventDefault();
         var form = new FormData();
-        form.append("banner_image", $('input[type=file]')[0].files[0]);
-        form.append("link", option.val());
-        form.append("docter_link", $('.otherlink').val())
-        
-        var settings = {
-          "url": "http://142.93.219.133:4001/api/banner",
-          "method": "POST",
-          "timeout": 0,
-          "processData": false,
-          "mimeType": "multipart/form-data",
-          "contentType": false,
-          "data": form
-        };
-        
-        $.ajax(settings).done(function (response) {
-          location.reload(true);
-          console.log(response);
-        }).catch(err => {
-          alert(JSON.parse(err.responseText).message);
-        });
+        console.log("link1", option.val())
+        console.log("link2", $('.otherlink').val().length)
+        if (option.val() != "Select" && $('.otherlink').val().length != 0) {
+           alert("Please Choose Only One Link to add banners")
+        } else if (option.val() == "Select" && $('.otherlink').val().length == 0) {
+          alert("Please choose atleast one Link to add Banner.")
+        } else {
+          form.append("banner_image", $('input[type=file]')[0].files[0]);
+          form.append("link", option.val());
+          form.append("docter_link", $('.otherlink').val())
+          
+          var settings = {
+            "url": "http://142.93.219.133:4001/api/banner",
+            "method": "POST",
+            "timeout": 0,
+            "processData": false,
+            "mimeType": "multipart/form-data",
+            "contentType": false,
+            "data": form
+          };
+          
+          $.ajax(settings).done(function (response) {
+            location.reload(true);
+            console.log(response);
+          }).catch(err => {
+            alert(JSON.parse(err.responseText).message);
+          });
+        }
+       
       })
       
       var settings = {

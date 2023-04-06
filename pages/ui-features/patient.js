@@ -29,9 +29,7 @@
                         </td>
                         <td>  ${response.data.items[i].phone} </td>
                         <td> <button type="button" id="viewbutton" class="btn btn-gradient-primary btn-rounded btn-fw"  value=${response.data.items[i].id}>See full profile</button> </td>
-                        <td> <div class="form-check form-switch">
-                          <input class="form-check-input checkbutton" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        </div></td>
+                        <td>  ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
                     </tr>
                 `)
                 }
@@ -57,9 +55,7 @@
                           </td>
                           <td>  ${response.data.items[i].phone} </td>
                           <td> <button type="button" id="viewbutton" class="btn btn-gradient-primary btn-rounded btn-fw"  value=${response.data.items[i].id}>See full profile</button> </td>
-                          <td> <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        </div></td>
+                          <td>  ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
                       </tr>
                     `)
                 }
@@ -94,9 +90,7 @@
                           </td>
                           <td>  ${response.data.items[i].phone} </td>
                           <td> <button type="button" id="viewbutton" class="btn btn-gradient-primary btn-rounded btn-fw"  value=${response.data.items[i].id}>See full profile</button> </td>
-                          <td> <div class="form-check form-switch">
-                          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-                        </div></td>
+                          <td>  ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
                       </tr>
                   `)
                   }
@@ -111,5 +105,32 @@
             $.cookie('id', $(this).val(), { path: '/' });
             $(location).prop('href', `./patientdetails/patientdetails.html`)
           })
-    });
+          
+          $(document).on("click", ".disableButton", function() {
+            
+            var settings = {
+              "url": `http://142.93.219.133:4001/api/disable-patient?disable=false&patientId=${$(this).val()}`,
+              "method": "PATCH",
+              "timeout": 0,
+            };
+            
+            $.ajax(settings).done(function (response) {
+              location.reload(true);
+              console.log(response);
+            });
+          })
+          $(document).on("click", ".activeButton", function() {
+      
+            var settings = {
+              "url": `http://142.93.219.133:4001/api/disable-patient?disable=true&patientId=${$(this).val()}`,
+              "method": "PATCH",
+              "timeout": 0,
+            };
+            
+            $.ajax(settings).done(function (response) {
+              location.reload(true);
+              console.log(response);
+            });
+          })
+      });
   })(jQuery);

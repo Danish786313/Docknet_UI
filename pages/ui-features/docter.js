@@ -29,7 +29,7 @@
                 </td>
                 <td> ${response.data.items[i].phone} </td>
                 <td> <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw viewbutton" value=${response.data.items[i].id}>See full profile</button> </td>
-                <td>
+                <td> ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
                   <div class="form-check form-switch">
                     <input id="checkboxButton" class="form-check-input flipcheckbox" type="checkbox"  value="${response.data.items[i].id}" role="switch" id="flexSwitchCheckDefault">
                   </div>
@@ -68,9 +68,7 @@
                 </td>
                 <td> ${response.data.items[i].phone} </td>
                 <td> <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="viewbutton" value=${response.data.items[i].id}>See full profile</button> </td>
-                <td><div class="form-check form-switch">
-                <input id="checkboxButton" class="form-check-input flipcheckbox" type="checkbox"  value="${response.data.items[i].id}" role="switch" id="flexSwitchCheckDefault">
-              </div></td>
+                <td> ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
             </tr>
       `)
       }
@@ -96,8 +94,8 @@
                     </td>
                     <td> ${response.data.items[i].phone} </td>
                     <td> <button type="button" class="btn btn-gradient-primary btn-rounded btn-fw" id="viewbutton" value=${response.data.items[i].id}>See full profile</button> </td>
-                    <td> 
-                      <div class="form-check form-switch">
+                    <td> ${ response.data.items[i].disable ? `<button type="button" data-id="true" class="btn btn-gradient-danger btn-fw disableButton" value=${response.data.items[i].id} >Deactive</button>`: `<button data-id="false" type="button" class="btn btn-gradient-success btn-fw activeButton" value=${ response.data.items[i].id }>Avtive</button>` } </td>
+                    <div class="form-check form-switch">
                         <input id="checkboxButton"  type="checkbox" value="${response.data.items[i].id}">
                       </div>
                     </td>
@@ -130,10 +128,34 @@
         $(this).attr('checked', 'checked');
         console.lo
       }
-
-
     })
    
+    $(document).on("click", ".disableButton", function() {
+
+      var settings = {
+        "url": `http://142.93.219.133:4001/api/disable-docter?disable=false&docterId=${$(this).val()}`,
+        "method": "PATCH",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        location.reload(true)
+        console.log(response);
+      });
+    })
+    $(document).on("click", ".activeButton", function() {
+
+      var settings = {
+        "url": `http://142.93.219.133:4001/api/disable-docter?disable=true&docterId=${$(this).val()}`,
+        "method": "PATCH",
+        "timeout": 0,
+      };
+      
+      $.ajax(settings).done(function (response) {
+        location.reload(true)
+        console.log(response);
+      });
+    })
                     
     });
 })(jQuery);

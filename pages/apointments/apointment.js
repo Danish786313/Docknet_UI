@@ -20,15 +20,13 @@
           for (let i=0; i <= response.data.items.length -1 ; i++) {
             rows.append(`
                 <tr>
-                <td> ${i+1} </td>
-                  <td> <img src="${response.data.items[i].patient.profilePicture}" alt="image" />${response.data.items[i].patient.name} </td>
-                  <td> <img src="${response.data.items[i].docter.photo}" alt="image" /> ${response.data.items[i].docter.fullName} </td>
-                  <td> ${response.data.items[i].appointment.payment} </td>
-                  <td> ${response.data.items[i].appointment.date} </td>
-                  <td> ${response.data.items[i].appointment.time} </td>
-                  <td> ${response.data.items[i].appointment.status} </td>
-                  <td> <button value="${response.data.items[i].appointment.problem_desc}" type="button" class="btn btn-primary reasonbottun" data-bs-toggle="modal" data-bs-target="#exampleModal">Reason</button>
-                  </td>
+                  <td> <img src="${ response.data.items[i].patient.profilePicture }" alt="image" />${ response.data.items[i].patient.name } </td>
+                  <td> <img src="${ response.data.items[i].docter.photo }" alt="image" /> ${ response.data.items[i].docter.fullName } </td>
+                  <td> ${ response.data.items[i].appointment.payment } </td>
+                  <td> ${ response.data.items[i].appointment.date } </td>
+                  <td> ${ response.data.items[i].appointment.time } </td>
+                  <td> ${ response.data.items[i].appointment.status } </td>
+                  <td> <button value=${ response.data.items[i].patient.id } type="button" class="btn btn-primary HealthRecoedBottun">Health Record</button> </td>
                 </tr>
                 `)
             }
@@ -44,14 +42,13 @@
                     for (let i=0; i <= response.data.items.length -1 ; i++) {
                         rows.append(`
                             <tr>
-                              <td> ${i*currentPage ? i*currentPage: i+1} </td>
                               <td> <img src="${response.data.items[i].patient.profilePicture}" alt="image" />${response.data.items[i].patient.name} </td>
                               <td> <img src="${response.data.items[i].docter.photo}" alt="image" /> ${response.data.items[i].docter.fullName} </td>
                               <td> ${response.data.items[i].appointment.payment} </td>
                               <td> ${response.data.items[i].appointment.date} </td>
                               <td> ${response.data.items[i].appointment.time} </td>
                               <td> ${response.data.items[i].appointment.status} </td>
-                              <td> <button value="${response.data.items[i].appointment.problem_desc}" type="button" class="btn btn-primary reasonbottun" data-bs-toggle="modal" data-bs-target="#exampleModal">Reason</button>
+                              <td> <button value=${response.data.items[i].patient.id} type="button" class="btn btn-primary HealthRecoedBottun">Health Record</button> </td>
                               </td>
                             </tr>
                             `)
@@ -60,9 +57,9 @@
             })
         });
 
-        $(document).on("click", ".reasonbottun", function(){
-            reason.empty().append($(this).val())
-           
+        $(document).on("click", ".HealthRecoedBottun", function(){
+            $.cookie('id', $(this).val(), { path: '/' });
+            $(location).prop('href', `./HealthRecord/healthrecord.html`)
         })
 
         var search = $(".searchapointments")
@@ -81,15 +78,14 @@
                 for (let i=0; i <= response.data.items.length -1 ; i++) {
                     rows.append(`
                         <tr>
-                            <td> ${i+1} </td>
                             <td> <img src="${response.data.items[i].patient.profilePicture}" alt="image" />${response.data.items[i].patient.name} </td>
                             <td> <img src="${response.data.items[i].docter.photo}" alt="image" /> ${response.data.items[i].docter.fullName} </td>
                             <td> ${response.data.items[i].appointment.payment} </td>
                             <td> ${response.data.items[i].appointment.date} </td>
                             <td> ${response.data.items[i].appointment.time} </td>
                             <td> ${response.data.items[i].appointment.status} </td>
-                            <td> <button value="${response.data.items[i].appointment.problem_desc}" type="button" class="btn btn-primary reasonbottun" data-bs-toggle="modal" data-bs-target="#exampleModal">Reason</button>
-                        </tr>
+                            <td> <button value=${response.data.items[i].patient.id} type="button" class="btn btn-primary HealthRecoedBottun"> Health Record</button> </td>
+                            </tr>
                         `)
                     }
                 });
@@ -97,3 +93,6 @@
 
     });
   })(jQuery);
+// <td> <button value="${response.data.items[i].appointment.problem_desc}" type="button" class="btn btn-primary reasonbottun" data-bs-toggle="modal" data-bs-target="#exampleModal">Reason</button>
+
+// <td> ${i*currentPage ? i*currentPage: i+1} </td>
