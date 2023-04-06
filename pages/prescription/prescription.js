@@ -6,6 +6,7 @@
       var pagination = $('.paginationdata')
       var searchText
       var num = $('.rows')
+      var date
 
       $.ajax({
         "url": `http://142.93.219.133:4001/api/get-all-prescriptions?_page=0&_limit=10&searchText`,
@@ -17,10 +18,13 @@
           pagination.append(`<li class="page-item"><button value="${i}" type="button" class="page-link paginationbutton">${i + 1}</button></li>`)
         }
         for (let i=0; i<= response.data.items.length - 1; i++) {
+          date = new Date(response.data.items[i].createdAt)
           num.append(`<tr>
                           <td> ${ i + 1} </td>
                           <td> <img src="${response.data.items[i].patient.profilePicture}" alt="image" /> ${ response.data.items[i].docter.fullName } </td>
                           <td> <img src="${response.data.items[i].patient.profilePicture}" alt="image" /> ${ response.data.items[i].patient.name } </td>
+                          <td> ${ date.getDate() + "-" +  date.getMonth() + "-" + date.getFullYear() } </td>
+
                           <td>
                             <div class="mt-3">
                                 <a class="btn-lg font-weight-medium auth-form-btn" href="${ response.data.items[i].prescription_file}">See Invoice</a>
