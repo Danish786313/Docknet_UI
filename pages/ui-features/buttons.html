@@ -33,15 +33,51 @@
           </button>
           <div class="search-field d-none d-md-block">
             <form class="d-flex align-items-center h-100" action="#">
-              <div class="input-group">
-                <div class="input-group-prepend bg-transparent">
-                  <!-- <i class="input-group-text border-0 mdi mdi-magnify"></i> -->
-                </div>
-                <!-- <input type="text" class="form-control bg-transparent border-0" placeholder="Search Users"> -->
+              <div class="dropdown">
+                <select name="select_box_name" class="form-select options" id="inputID">
+                  <option value="">Ariana</option>
+                  <option value="">Beja</option>
+                  <option value="">Ben Arous</option>
+                  <option value="">Bizerte</option>
+                  <option value="">Gafsa</option>
+                  <option value="">Jendouba</option>
+                  <option value="">Kairouan</option>
+                  <option value="">Kasserine</option>
+                  <option value="">Kebili</option>
+                  <option value="">Kef</option>
+                  <option value="">Mahdia</option>
+                  <option value="">Manouba</option>
+                  <option value="">Medenine</option>
+                  <option value="">Monastir</option>
+                  <option value="">Nabeul</option>
+                  <option value="">Sfax</option>
+                  <option value="">Sidi Bou Zid</option>
+                  <option value="">Siliana</option>
+                  <option value="">Sousse</option>
+                  <option value="">Tataouine</option>
+                  <option value="">Tozeur</option>
+                  <option value="">Tunis</option>
+                  <option value="">Zaghouan</option>
+                </select>
+              </div>
+              <div class="dropdown" style="margin-left: 5px;">
+                <select name="select_box_name" class="form-select options" id="inputID">
+                  <option value="">City</option>
+                  
+                </select>
               </div>
             </form>
           </div>
           <ul class="navbar-nav navbar-nav-right">
+            <li>
+              <form>
+                <tr><td><label for="exampleInputUsername2" class="col-form-label" >From :</label></td></tr>
+                <tr><td><input type="date" class="fromDate"></td></tr>
+                <tr><td><label for="exampleInputUsername2" class="col-form-label" >To :</label></td></tr>
+                <tr><td><input type="date" class="fromDate"></td></tr>
+                <tr><td><input type="submit" class="btn btn-block btn-gradient-primary submitButton"></td></tr>
+              </form>
+            </li>
             <li class="nav-item nav-profile dropdown">
               <a class="nav-link dropdown-toggle" id="profileDropdown" href="#" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="nav-profile-img">
